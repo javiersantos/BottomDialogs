@@ -92,7 +92,7 @@ public class BottomDialog {
     }
 
     public BottomDialog setNegativeText(@NonNull CharSequence buttonText) {
-        this.btn_positive = buttonText;
+        this.btn_negative = buttonText;
         return this;
     }
 
