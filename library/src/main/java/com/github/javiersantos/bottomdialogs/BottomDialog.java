@@ -11,6 +11,7 @@ import android.support.v4.content.res.ResourcesCompat;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -18,11 +19,21 @@ import android.widget.TextView;
 public class BottomDialog {
     private Activity activity;
     private Context context;
-    private boolean isCancelable;
-    private CharSequence title, content;
+
+    // Icon, Title and Content
     private Drawable icon;
+    private CharSequence title, content;
+
+    // Buttons
     private CharSequence btn_negative, btn_positive;
     private ButtonCallback btn_negative_callback, btn_positive_callback;
+
+    // Custom View
+    private View customView;
+    private int customViewPaddingLeft, customViewPaddingTop, customViewPaddingRight, customViewPaddingBottom;
+
+    // Other options
+    private boolean isCancelable;
 
     public BottomDialog(Context context) {
         this.activity = (Activity) context;
@@ -95,6 +106,24 @@ public class BottomDialog {
         return this;
     }
 
+    public BottomDialog setCustomView(View customView) {
+        this.customView = customView;
+        this.customViewPaddingLeft = 0;
+        this.customViewPaddingRight = 0;
+        this.customViewPaddingTop = 0;
+        this.customViewPaddingBottom = 0;
+        return this;
+    }
+
+    public BottomDialog setCustomView(View customView, int left, int top, int right, int bottom) {
+        this.customView = customView;
+        this.customViewPaddingLeft = UtilsLibrary.dpToPixels(context, left);
+        this.customViewPaddingRight = UtilsLibrary.dpToPixels(context, right);
+        this.customViewPaddingTop = UtilsLibrary.dpToPixels(context, top);
+        this.customViewPaddingBottom = UtilsLibrary.dpToPixels(context, bottom);
+        return this;
+    }
+
     public void show() {
         initStyle().show();
     }
@@ -106,6 +135,7 @@ public class BottomDialog {
         ImageView vIcon = (ImageView) view.findViewById(R.id.bottomDialog_icon);
         TextView vTitle = (TextView) view.findViewById(R.id.bottomDialog_title);
         TextView vContent = (TextView) view.findViewById(R.id.bottomDialog_content);
+        FrameLayout vCustomView = (FrameLayout) view.findViewById(R.id.bottomDialog_custom_view);
         Button vNegative = (Button) view.findViewById(R.id.bottomDialog_cancel);
         Button vPositive = (Button) view.findViewById(R.id.bottomDialog_ok);
 
@@ -120,6 +150,11 @@ public class BottomDialog {
 
         if (content != null) {
             vContent.setText(content);
+        }
+
+        if (customView != null) {
+            vCustomView.addView(customView);
+            vCustomView.setPadding(customViewPaddingLeft, customViewPaddingTop, customViewPaddingRight, customViewPaddingBottom);
         }
 
         if (btn_positive != null) {
