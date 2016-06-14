@@ -33,6 +33,26 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    public void sample1(View view) {
+        new BottomDialog(this)
+                .setTitle("Awesome!")
+                .setContent("Glad to see you like BottomDialogs! If you're up for it, we would really appreciate you reviewing us.")
+                .setPositiveText("Google Play")
+                .setNegativeText("Close")
+                .onPositive(new BottomDialog.ButtonCallback() {
+                    @Override
+                    public void onClick(@NonNull BottomDialog dialog) {
+
+                    }
+                })
+                .onNegative(new BottomDialog.ButtonCallback() {
+                    @Override
+                    public void onClick(@NonNull BottomDialog dialog) {
+
+                    }
+                }).show();
+    }
+
     public void toGithub(View view) {
         startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://github.com/javiersantos/BottomDialogs")));
     }
@@ -41,6 +61,9 @@ public class MainActivity extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_main, menu);
+
+        menu.findItem(R.id.action_about).setIcon(new IconicsDrawable(this).icon(MaterialDesignIconic.Icon.gmi_info).color(Color.WHITE).actionBar());
+
         return true;
     }
 
@@ -52,7 +75,8 @@ public class MainActivity extends AppCompatActivity {
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
+        if (id == R.id.action_about) {
+            startActivity(new Intent(this, AboutActivity.class));
             return true;
         }
         return super.onOptionsItemSelected(item);
