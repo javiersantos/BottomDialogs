@@ -69,7 +69,7 @@ dialog.show();
 .onPositive(new BottomDialog.ButtonCallback() {
         @Override
         public void onClick(BottomDialog dialog) {
-                Log.d("MaterialStyledDialogs", "Do something!");
+                Log.d("BottomDialogs", "Do something!");
         }
 })
 //.setNegativeText(...)
