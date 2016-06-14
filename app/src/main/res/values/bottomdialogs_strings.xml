@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="define_bottomdialogs" />
+    <string name="library_bottomdialogs_author">Javier Santos</string>
+    <string name="library_bottomdialogs_authorWebsite">https://github.com/javiersantos</string>
+    <string name="library_bottomdialogs_libraryName">BottomDialogs</string>
+    <string name="library_bottomdialogs_libraryDescription">A library that shows a customizable Material-based bottom sheet.</string>
+    <string name="library_bottomdialogs_libraryWebsite">https://github.com/javiersantos/BottomDialogs</string>
+    <string name="library_bottomdialogs_licenseId">apache_2_0</string>
+    <string name="library_bottomdialogs_isOpenSource">true</string>
+    <string name="library_bottomdialogs_repositoryLink">https://github.com/javiersantos/BottomDialogs</string>
+</resources>
