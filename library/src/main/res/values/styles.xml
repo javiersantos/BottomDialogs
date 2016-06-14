@@ -2,7 +2,7 @@
 <resources>
     <style name="BottomDialogs" parent="@android:style/Theme.Dialog">
         <item name="android:windowIsTranslucent">true</item>
-        <item name="android:windowBackground">@android:color/white</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
         <item name="android:windowContentOverlay">@null</item>
         <item name="android:windowNoTitle">true</item>
         <item name="android:backgroundDimEnabled">true</item>
@@ -38,7 +38,7 @@
         <item name="android:background">@drawable/btn_flat_selector</item>
         <item name="android:minWidth">@dimen/btn_min_width</item>
         <item name="android:minHeight">@dimen/btn_min_height</item>
-        <item name="android:textColor">@color/colorPrimary</item>
+        <item name="android:textColor">@color/colorAccent</item>
         <item name="android:textStyle">bold</item>
         <item name="android:paddingLeft">@dimen/btn_flat_padding</item>
         <item name="android:paddingRight">@dimen/btn_flat_padding</item>
