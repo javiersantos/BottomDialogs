@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="btn_corner_radius">2dp</dimen>
+    <dimen name="btn_min_width">88dp</dimen>
+    <dimen name="btn_min_height">36dp</dimen>
+    <dimen name="btn_flat_padding">8dp</dimen>
+    <dimen name="btn_margin">4dp</dimen>
+    <dimen name="btn_padding">16dp</dimen>
+    <dimen name="btn_normal_padding">8dp</dimen>
+    <dimen name="btn_normal_margin">4dp</dimen>
+</resources>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="Button" parent="Button.Base">
+        <item name="android:textAllCaps">true</item>
+    </style>
+
+    <style name="Button.Flat" parent="Button.Flat.Base">
+        <item name="android:textAllCaps">true</item>
+    </style>
+</resources>

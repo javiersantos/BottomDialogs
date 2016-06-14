@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="BottomDialogs" parent="@android:style/Theme.Dialog">
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowBackground">@android:color/white</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:backgroundDimEnabled">true</item>
+        <item name="android:windowIsFloating">false</item>
+        <item name="android:windowAnimationStyle">@style/BottomDialogsAnimation</item>
+    </style>
+
+    <style name="BottomDialogsAnimation">
+        <item name="android:windowEnterAnimation">@anim/sheet_show</item>
+        <item name="android:windowExitAnimation">@anim/sheet_hide</item>
+    </style>
+
+    <style name="Button" parent="Button.Base" />
+
+    <style name="Button.Flat" parent="Button.Flat.Base" />
+
+    <style name="Button.Base" parent="Base.TextAppearance.AppCompat.Button">
+        <item name="android:background">@drawable/btn_default</item>
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:textSize">13sp</item>
+        <item name="android:minHeight">@dimen/btn_min_height</item>
+        <item name="android:minWidth">@dimen/btn_min_width</item>
+        <item name="android:focusable">true</item>
+        <item name="android:clickable">true</item>
+        <item name="android:gravity">center</item>
+        <item name="android:paddingLeft">@dimen/btn_padding</item>
+        <item name="android:paddingRight">@dimen/btn_padding</item>
+        <item name="android:layout_marginLeft">@dimen/btn_margin</item>
+        <item name="android:layout_marginRight">@dimen/btn_margin</item>
+    </style>
+
+    <style name="Button.Flat.Base" parent="Base.TextAppearance.AppCompat.Button">
+        <item name="android:background">@drawable/btn_flat_selector</item>
+        <item name="android:minWidth">@dimen/btn_min_width</item>
+        <item name="android:minHeight">@dimen/btn_min_height</item>
+        <item name="android:textColor">@color/colorPrimary</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:paddingLeft">@dimen/btn_flat_padding</item>
+        <item name="android:paddingRight">@dimen/btn_flat_padding</item>
+        <item name="android:layout_marginLeft">@dimen/btn_margin</item>
+        <item name="android:layout_marginRight">@dimen/btn_margin</item>
+    </style>
+</resources>
