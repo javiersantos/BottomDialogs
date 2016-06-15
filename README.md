@@ -26,7 +26,6 @@ Add the repository to your project **build.gradle**:
 
 ```Javascript
 repositories {
-    jcenter()
     maven {
         url "https://jitpack.io"
     }
@@ -37,7 +36,7 @@ And add the library to your module **build.gradle**:
 
 ```Javascript
 dependencies {
-    compile 'com.github.javiersantos:BottomDialogs:1.0'
+    compile 'com.github.javiersantos:BottomDialogs:1.0.1'
 }
 ```
 
