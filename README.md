@@ -13,10 +13,10 @@
 <table>
     <tr>
         <td>
-            <img src="https://raw.githubusercontent.com/javiersantos/BottomDialogs/master/Screenshots/gif-1.gif" height="400" />
+            <img src="https://raw.githubusercontent.com/javiersantos/BottomDialogs/master/Screenshots/gif-1.gif" height="300" />
         </td>
         <td>
-            <img src="https://raw.githubusercontent.com/javiersantos/BottomDialogs/master/Screenshots/gif-2.gif" width="600" />
+            <img src="https://raw.githubusercontent.com/javiersantos/BottomDialogs/master/Screenshots/gif-2.gif" width="500" />
         </td>
     </tr>
 </table>
