@@ -10,6 +10,17 @@
 
 <p align="center">Android Library that shows a customizable Material-based bottom sheet.</p>
 
+<table>
+    <tr>
+        <td>
+            <img src="https://raw.githubusercontent.com/javiersantos/BottomDialogs/master/Screenshots/gif-1.gif" />
+        </td>
+        <td>
+            <img src="https://raw.githubusercontent.com/javiersantos/BottomDialogs/master/Screenshots/gif-2.gif" />
+        </td>
+    </tr>
+</table>
+
 ## How to include
 Add the repository to your project **build.gradle**:
 
