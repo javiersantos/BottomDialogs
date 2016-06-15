@@ -13,7 +13,7 @@
 <table align="center">
     <tr>
         <td>
-            <img src="https://raw.githubusercontent.com/javiersantos/BottomDialogs/master/Screenshots/gif-1.gif" height="350" />
+            <img src="https://raw.githubusercontent.com/javiersantos/BottomDialogs/master/Screenshots/gif-1.gif" height="400" />
         </td>
         <td>
             <img src="https://raw.githubusercontent.com/javiersantos/BottomDialogs/master/Screenshots/gif-2.gif" width="500" />
