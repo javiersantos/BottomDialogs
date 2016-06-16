@@ -34,7 +34,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void sample1(View view) {
-        new BottomDialog(this)
+        new BottomDialog.Builder(this)
                 .setTitle("Awesome!")
                 .setContent("Glad to see you like BottomDialogs! If you're up for it, we would really appreciate you reviewing us.")
                 .setPositiveText("Google Play")

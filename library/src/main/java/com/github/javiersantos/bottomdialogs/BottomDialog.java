@@ -7,6 +7,7 @@ import android.graphics.drawable.Drawable;
 import android.support.annotation.DrawableRes;
 import android.support.annotation.NonNull;
 import android.support.annotation.StringRes;
+import android.support.annotation.UiThread;
 import android.support.v4.content.res.ResourcesCompat;
 import android.view.Gravity;
 import android.view.View;
@@ -17,120 +18,33 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 public class BottomDialog {
-    private Activity activity;
-    private Context context;
+    protected final Builder mBuilder;
 
-    // Icon, Title and Content
-    private Drawable icon;
-    private CharSequence title, content;
-
-    // Buttons
-    private CharSequence btn_negative, btn_positive;
-    private ButtonCallback btn_negative_callback, btn_positive_callback;
-
-    // Custom View
-    private View customView;
-    private int customViewPaddingLeft, customViewPaddingTop, customViewPaddingRight, customViewPaddingBottom;
-
-    // Other options
-    private boolean isCancelable;
-
-    public BottomDialog(Context context) {
-        this.activity = (Activity) context;
-        this.context = context;
-        this.isCancelable = true;
+    public final Builder getBuilder() {
+        return mBuilder;
     }
 
-    public BottomDialog setTitle(@StringRes int titleRes) {
-        setTitle(this.context.getString(titleRes));
-        return this;
+    protected BottomDialog(Builder builder) {
+        mBuilder = builder;
+        mBuilder.bottomDialog = initBottomDialog(builder);
     }
 
-    public BottomDialog setTitle(@NonNull CharSequence title) {
-        this.title = title;
-        return this;
-    }
-
-    public BottomDialog setContent(@StringRes int contentRes) {
-        setContent(this.context.getString(contentRes));
-        return this;
-    }
-
-    public BottomDialog setContent(@NonNull CharSequence content) {
-        this.content = content;
-        return this;
-    }
-
-    public BottomDialog setIcon(@NonNull Drawable icon) {
-        this.icon = icon;
-        return this;
-    }
-
-    public BottomDialog setIcon(@DrawableRes int iconRes) {
-        this.icon = ResourcesCompat.getDrawable(context.getResources(), iconRes, null);
-        return this;
-    }
-
-    public BottomDialog setPositiveText(@StringRes int buttonTextRes) {
-        setPositiveText(this.context.getString(buttonTextRes));
-        return this;
-    }
-
-    public BottomDialog setPositiveText(@NonNull CharSequence buttonText) {
-        this.btn_positive = buttonText;
-        return this;
-    }
-
-    public BottomDialog onPositive(@NonNull ButtonCallback buttonCallback) {
-        this.btn_positive_callback = buttonCallback;
-        return this;
-    }
-
-    public BottomDialog setNegativeText(@StringRes int buttonTextRes) {
-        setPositiveText(this.context.getString(buttonTextRes));
-        return this;
-    }
-
-    public BottomDialog setNegativeText(@NonNull CharSequence buttonText) {
-        this.btn_negative = buttonText;
-        return this;
-    }
-
-    public BottomDialog onNegative(@NonNull ButtonCallback buttonCallback) {
-        this.btn_negative_callback = buttonCallback;
-        return this;
-    }
-
-    public BottomDialog setCancelable(boolean cancelable) {
-        this.isCancelable = cancelable;
-        return this;
-    }
-
-    public BottomDialog setCustomView(View customView) {
-        this.customView = customView;
-        this.customViewPaddingLeft = 0;
-        this.customViewPaddingRight = 0;
-        this.customViewPaddingTop = 0;
-        this.customViewPaddingBottom = 0;
-        return this;
-    }
-
-    public BottomDialog setCustomView(View customView, int left, int top, int right, int bottom) {
-        this.customView = customView;
-        this.customViewPaddingLeft = UtilsLibrary.dpToPixels(context, left);
-        this.customViewPaddingRight = UtilsLibrary.dpToPixels(context, right);
-        this.customViewPaddingTop = UtilsLibrary.dpToPixels(context, top);
-        this.customViewPaddingBottom = UtilsLibrary.dpToPixels(context, bottom);
-        return this;
-    }
-
+    @UiThread
     public void show() {
-        initStyle().show();
+        if (mBuilder != null && mBuilder.bottomDialog != null)
+            mBuilder.bottomDialog.show();
     }
 
-    private Dialog initStyle() {
-        final Dialog bottomDialog = new Dialog(activity, R.style.BottomDialogs);
-        View view = activity.getLayoutInflater().inflate(R.layout.bottom_dialog, null);
+    @UiThread
+    public void dismiss() {
+        if (mBuilder != null && mBuilder.bottomDialog != null)
+            mBuilder.bottomDialog.dismiss();
+    }
+
+    @UiThread
+    private Dialog initBottomDialog(final Builder builder) {
+        final Dialog bottomDialog = new Dialog(builder.context, R.style.BottomDialogs);
+        View view = builder.activity.getLayoutInflater().inflate(R.layout.bottom_dialog, null);
 
         ImageView vIcon = (ImageView) view.findViewById(R.id.bottomDialog_icon);
         TextView vTitle = (TextView) view.findViewById(R.id.bottomDialog_title);
@@ -139,56 +53,181 @@ public class BottomDialog {
         Button vNegative = (Button) view.findViewById(R.id.bottomDialog_cancel);
         Button vPositive = (Button) view.findViewById(R.id.bottomDialog_ok);
 
-        if (icon != null) {
+        if (builder.icon != null) {
             vIcon.setVisibility(View.VISIBLE);
-            vIcon.setImageDrawable(icon);
+            vIcon.setImageDrawable(builder.icon);
         }
 
-        if (title != null) {
-            vTitle.setText(title);
+        if (builder.title != null) {
+            vTitle.setText(builder.title);
         }
 
-        if (content != null) {
-            vContent.setText(content);
+        if (builder.content != null) {
+            vContent.setText(builder.content);
         }
 
-        if (customView != null) {
-            vCustomView.addView(customView);
-            vCustomView.setPadding(customViewPaddingLeft, customViewPaddingTop, customViewPaddingRight, customViewPaddingBottom);
+        if (builder.customView != null) {
+            vCustomView.addView(builder.customView);
+            vCustomView.setPadding(builder.customViewPaddingLeft, builder.customViewPaddingTop, builder.customViewPaddingRight, builder.customViewPaddingBottom);
         }
 
-        if (btn_positive != null) {
+        if (builder.btn_positive != null) {
             vPositive.setVisibility(View.VISIBLE);
-            vPositive.setText(btn_positive);
+            vPositive.setText(builder.btn_positive);
             vPositive.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    if (btn_positive_callback != null)
-                        btn_positive_callback.onClick(BottomDialog.this);
+                    if (builder.btn_positive_callback != null)
+                        builder.btn_positive_callback.onClick(BottomDialog.this);
                     bottomDialog.dismiss();
                 }
             });
         }
 
-        if (btn_negative != null) {
+        if (builder.btn_negative != null) {
             vNegative.setVisibility(View.VISIBLE);
-            vNegative.setText(btn_negative);
+            vNegative.setText(builder.btn_negative);
             vNegative.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    if (btn_negative_callback != null)
-                        btn_negative_callback.onClick(BottomDialog.this);
+                    if (builder.btn_negative_callback != null)
+                        builder.btn_negative_callback.onClick(BottomDialog.this);
                     bottomDialog.dismiss();
                 }
             });
         }
 
         bottomDialog.setContentView(view);
-        bottomDialog.setCancelable(isCancelable);
+        bottomDialog.setCancelable(builder.isCancelable);
         bottomDialog.getWindow().setLayout(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
         bottomDialog.getWindow().setGravity(Gravity.BOTTOM);
 
         return bottomDialog;
+    }
+
+    public static class Builder {
+        protected Activity activity;
+        protected Context context;
+
+        // Bottom Dialog
+        protected Dialog bottomDialog;
+
+        // Icon, Title and Content
+        protected Drawable icon;
+        protected CharSequence title, content;
+
+        // Buttons
+        protected CharSequence btn_negative, btn_positive;
+        protected ButtonCallback btn_negative_callback, btn_positive_callback;
+
+        // Custom View
+        protected View customView;
+        protected int customViewPaddingLeft, customViewPaddingTop, customViewPaddingRight, customViewPaddingBottom;
+
+        // Other options
+        protected boolean isCancelable;
+
+        public Builder(@NonNull Context context) {
+            this.activity = (Activity) context;
+            this.context = context;
+            this.isCancelable = true;
+        }
+
+        public Builder setTitle(@StringRes int titleRes) {
+            setTitle(this.context.getString(titleRes));
+            return this;
+        }
+
+        public Builder setTitle(@NonNull CharSequence title) {
+            this.title = title;
+            return this;
+        }
+
+        public Builder setContent(@StringRes int contentRes) {
+            setContent(this.context.getString(contentRes));
+            return this;
+        }
+
+        public Builder setContent(@NonNull CharSequence content) {
+            this.content = content;
+            return this;
+        }
+
+        public Builder setIcon(@NonNull Drawable icon) {
+            this.icon = icon;
+            return this;
+        }
+
+        public Builder setIcon(@DrawableRes int iconRes) {
+            this.icon = ResourcesCompat.getDrawable(context.getResources(), iconRes, null);
+            return this;
+        }
+
+        public Builder setPositiveText(@StringRes int buttonTextRes) {
+            setPositiveText(this.context.getString(buttonTextRes));
+            return this;
+        }
+
+        public Builder setPositiveText(@NonNull CharSequence buttonText) {
+            this.btn_positive = buttonText;
+            return this;
+        }
+
+        public Builder onPositive(@NonNull ButtonCallback buttonCallback) {
+            this.btn_positive_callback = buttonCallback;
+            return this;
+        }
+
+        public Builder setNegativeText(@StringRes int buttonTextRes) {
+            setPositiveText(this.context.getString(buttonTextRes));
+            return this;
+        }
+
+        public Builder setNegativeText(@NonNull CharSequence buttonText) {
+            this.btn_negative = buttonText;
+            return this;
+        }
+
+        public Builder onNegative(@NonNull ButtonCallback buttonCallback) {
+            this.btn_negative_callback = buttonCallback;
+            return this;
+        }
+
+        public Builder setCancelable(boolean cancelable) {
+            this.isCancelable = cancelable;
+            return this;
+        }
+
+        public Builder setCustomView(View customView) {
+            this.customView = customView;
+            this.customViewPaddingLeft = 0;
+            this.customViewPaddingRight = 0;
+            this.customViewPaddingTop = 0;
+            this.customViewPaddingBottom = 0;
+            return this;
+        }
+
+        public Builder setCustomView(View customView, int left, int top, int right, int bottom) {
+            this.customView = customView;
+            this.customViewPaddingLeft = UtilsLibrary.dpToPixels(context, left);
+            this.customViewPaddingRight = UtilsLibrary.dpToPixels(context, right);
+            this.customViewPaddingTop = UtilsLibrary.dpToPixels(context, top);
+            this.customViewPaddingBottom = UtilsLibrary.dpToPixels(context, bottom);
+            return this;
+        }
+
+        @UiThread
+        public BottomDialog build() {
+            return new BottomDialog(this);
+        }
+
+        @UiThread
+        public BottomDialog show() {
+            BottomDialog bottomDialog = build();
+            bottomDialog.show();
+            return bottomDialog;
+        }
+
     }
 
     public interface ButtonCallback {
