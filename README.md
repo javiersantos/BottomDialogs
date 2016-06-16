@@ -36,64 +36,98 @@ And add the library to your module **build.gradle**:
 
 ```Javascript
 dependencies {
-    compile 'com.github.javiersantos:BottomDialogs:1.0.1'
+    compile 'com.github.javiersantos:BottomDialogs:1.1'
 }
 ```
 
 ## Usage
 ### Basic Bottom Dialog
-A basic bottom dialog will be shown with the provided title (optional) and content.
+A basic bottom dialog will be shown. You have access to methods such as `setTitle()`, `setContent()`, `setIcon()`, `setCancelable()`, `dismiss()`, etc. Customizations are explained below.
 
 ```Java
-new BottomDialog(this)
+new BottomDialog.Builder(this)
         .setTitle("Awesome!")
         .setContent("What can we improve? Your feedback is always welcome.")
         .show();
 ```
-or using the builder...
+
+or
 
 ```Java
-BottomDialog dialog = new BottomDialog(this)
+BottomDialog bottomDialog = new BottomDialog.Builder(this)
         .setTitle("Awesome!")
         .setContent("What can we improve? Your feedback is always welcome.")
-        .build();
+        .builder();
 ...
-dialog.show();
+bottomDialog.show();
 ```
 
+### Displaying an icon
+The bottom dialog icon will be shown to the left of the title.
 
-## Customizations
+```Java
+new BottomDialog.Builder(this)
+        .setTitle("Awesome!")
+        .setContent("What can we improve? Your feedback is always welcome.")
+        .setIcon(R.drawable.ic_launcher)
+        //.setIcon(ContextCompat.getDrawable(this, R.drawable.ic_launcher))
+        .show();
+```
+
+### Adding buttons and callbacks
+Buttons are showed at the end of the bottom dialog. You can add your own text and actions/callbacks.
 
 ```Java
-// Set an icon for the bottom dialog.
-.setIcon(R.drawable.ic_launcher)
+new BottomDialog.Builder(this)
+        .setTitle("Awesome!")
+        .setContent("What can we improve? Your feedback is always welcome.")
+        .setPositiveText("OK")
+        .onPositive(new BottomDialog.ButtonCallback() {
+	        @Override
+	        public void onClick(BottomDialog dialog) {
+	                Log.d("BottomDialogs", "Do something!");
+	        }
+	}).show();
 ```
-```Java
-// Set if the dialog will be hidden when touching outside.
-// Default: true
-.setCancelable(false)
-```
-```Java
-// Set a positive / negative Material-based button for the bottom dialog.
-.setPositiveText("OK");
-.onPositive(new BottomDialog.ButtonCallback() {
-        @Override
-        public void onClick(BottomDialog dialog) {
-                Log.d("BottomDialogs", "Do something!");
-        }
-})
-//.setNegativeText(...)
-//.onNegative(...)
-```
-```Java
-// Set a custom view for the bottom dialog.
-// Check out the wiki for more documentation: https://github.com/javiersantos/BottomDialogs/wiki/Adding-a-custom-view
-.setCustomView(your_custom_view)
 
-// Set a custom view for the bottom dialog with optional padding in DP.
-// Check out the wiki for more documentation: https://github.com/javiersantos/BottomDialogs/wiki/Adding-a-custom-view
-.setCustomView(your_custom_view, int left, int top, int right, int bottom)
+```Java
+new BottomDialog.Builder(this)
+        .setTitle("Awesome!")
+        .setContent("What can we improve? Your feedback is always welcome.")
+        .setNegativeText("Exit")
+        .onNegative(new BottomDialog.ButtonCallback() {
+	        @Override
+	        public void onClick(BottomDialog dialog) {
+	                Log.d("BottomDialogs", "Do something!");
+	        }
+	}).show();
 ```
+
+If no `onPositive()` or `onNegative()` callbacks are provided, then the bottom dialog will be dismissed when tapping de button.
+
+### Dismissing when touching outside
+The `setCancelable()` method lets you disable dismissing the bottom dialog when you tap outside the dialog window.
+
+```Java
+new BottomDialog.Builder(this)
+        .setTitle("Awesome!")
+        .setContent("What can we improve? Your feedback is always welcome.")
+        .setCancelable(false)
+        .show();
+```
+
+### Adding a custom view
+You can add custom view to your bottom dialog just by adding the layout to the `setCustomView()` method.
+
+```Java
+new BottomDialog.Builder(this)
+        .setTitle("Awesome!")
+        .setContent("What can we improve? Your feedback is always welcome.")
+        .setCustomView(R.layout.my_custom_view)
+        .show();
+```
+
+A detailed description is available at: https://github.com/javiersantos/BottomDialogs/wiki/Adding-a-custom-view
 
 ## Apps already using this library
 Feel free to send me new projects by submitting an [issue](https://github.com/javiersantos/BottomDialogs/issues) or a [pull request](https://github.com/javiersantos/BottomDialogs/pulls).
