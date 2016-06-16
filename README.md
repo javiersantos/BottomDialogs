@@ -57,7 +57,7 @@ or
 BottomDialog bottomDialog = new BottomDialog.Builder(this)
         .setTitle("Awesome!")
         .setContent("What can we improve? Your feedback is always welcome.")
-        .builder();
+        .build();
 ...
 bottomDialog.show();
 ```
