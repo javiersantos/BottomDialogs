@@ -96,6 +96,10 @@ dialog.show();
 ```
 
 ## Apps already using this library
+
+- DU Certified by AOSP based custom ROM, Dirty Unicorns
+https://github.com/DirtyUnicorns/android_packages_apps_DU-Certified
+
 Feel free to send me new projects by submitting an [issue](https://github.com/javiersantos/BottomDialogs/issues) or a [pull request](https://github.com/javiersantos/BottomDialogs/pulls).
 
 ## License
