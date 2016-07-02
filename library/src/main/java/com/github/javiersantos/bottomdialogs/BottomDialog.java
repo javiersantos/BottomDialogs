@@ -44,7 +44,7 @@ public class BottomDialog {
     @UiThread
     private Dialog initBottomDialog(final Builder builder) {
         final Dialog bottomDialog = new Dialog(builder.context, R.style.BottomDialogs);
-        View view = builder.activity.getLayoutInflater().inflate(R.layout.bottom_dialog, null);
+        View view = builder.activity.getLayoutInflater().inflate(R.layout.library_bottom_dialog, null);
 
         ImageView vIcon = (ImageView) view.findViewById(R.id.bottomDialog_icon);
         TextView vTitle = (TextView) view.findViewById(R.id.bottomDialog_title);
