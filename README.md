@@ -6,7 +6,6 @@
   <a target="_blank" href="https://travis-ci.org/javiersantos/BottomDialogs"><img src="https://travis-ci.org/javiersantos/BottomDialogs.svg?branch=master"></a>
 	<a target="_blank" href="http://android-arsenal.com/details/1/3735"><img src="https://img.shields.io/badge/Android%20Arsenal-BottomDialogs-blue.svg"></a>
   <a target="_blank" href="https://www.paypal.me/javiersantos" title="Donate using PayPal"><img src="https://img.shields.io/badge/paypal-donate-yellow.svg" /></a>
-  <a target="_blank" href="http://patreon.com/javiersantos" title="Donate using Patreon"><img src="https://img.shields.io/badge/patreon-donate-yellow.svg" /></a>
 </p>
 
 <p align="center">Android Library that shows a customizable Material-based bottom sheet.</p>
