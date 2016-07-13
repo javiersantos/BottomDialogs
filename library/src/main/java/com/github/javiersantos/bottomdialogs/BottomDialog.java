@@ -179,7 +179,7 @@ public class BottomDialog {
         }
 
         public Builder setNegativeText(@StringRes int buttonTextRes) {
-            setPositiveText(this.context.getString(buttonTextRes));
+            setNegativeText(this.context.getString(buttonTextRes));
             return this;
         }
 
