@@ -4,11 +4,15 @@ import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
 import android.graphics.drawable.Drawable;
+import android.os.Build;
+import android.support.annotation.ColorRes;
 import android.support.annotation.DrawableRes;
 import android.support.annotation.NonNull;
 import android.support.annotation.StringRes;
 import android.support.annotation.UiThread;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.content.res.ResourcesCompat;
+import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
@@ -82,6 +86,25 @@ public class BottomDialog {
                     bottomDialog.dismiss();
                 }
             });
+
+            if (builder.btn_colorPositive != 0) {
+                vPositive.setTextColor(builder.btn_colorPositive);
+            }
+
+            if (builder.btn_colorPositiveBackground == 0) {
+                TypedValue v = new TypedValue();
+                boolean hasColorPrimary = builder.context.getTheme().resolveAttribute(R.attr.colorPrimary, v, true);
+                builder.btn_colorPositiveBackground = !hasColorPrimary ? v.data : ContextCompat.getColor(builder.context, R.color.colorPrimary);
+            }
+
+            Drawable buttonBackground = UtilsLibrary.createButtonBackgroundDrawable(builder.activity, builder.btn_colorPositiveBackground);
+
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+                vPositive.setBackground(buttonBackground);
+            } else {
+                // noinspection deprecation
+                vPositive.setBackgroundDrawable(buttonBackground);
+            }
         }
 
         if (builder.btn_negative != null) {
@@ -95,6 +118,10 @@ public class BottomDialog {
                     bottomDialog.dismiss();
                 }
             });
+
+            if (builder.btn_colorNegative != 0) {
+                vNegative.setTextColor(builder.btn_colorNegative);
+            }
         }
 
         bottomDialog.setContentView(view);
@@ -119,6 +146,12 @@ public class BottomDialog {
         // Buttons
         protected CharSequence btn_negative, btn_positive;
         protected ButtonCallback btn_negative_callback, btn_positive_callback;
+
+        // Button text colors
+        protected int btn_colorNegative, btn_colorPositive;
+
+        // Button background colors
+        protected int btn_colorPositiveBackground;
 
         // Custom View
         protected View customView;
@@ -163,6 +196,26 @@ public class BottomDialog {
             return this;
         }
 
+        public Builder setPositiveBackgroundColorResource(@ColorRes int buttonColorRes) {
+            this.btn_colorPositiveBackground = ResourcesCompat.getColor(context.getResources(), buttonColorRes, null);
+            return this;
+        }
+
+        public Builder setPositiveBackgroundColor(int color) {
+            this.btn_colorPositiveBackground = color;
+            return this;
+        }
+
+        public Builder setPositiveTextColorResource(@ColorRes int textColorRes) {
+            this.btn_colorPositive = ResourcesCompat.getColor(context.getResources(), textColorRes, null);
+            return this;
+        }
+
+        public Builder setPositiveTextColor(int color) {
+            this.btn_colorPositive = color;
+            return this;
+        }
+
         public Builder setPositiveText(@StringRes int buttonTextRes) {
             setPositiveText(this.context.getString(buttonTextRes));
             return this;
@@ -175,6 +228,16 @@ public class BottomDialog {
 
         public Builder onPositive(@NonNull ButtonCallback buttonCallback) {
             this.btn_positive_callback = buttonCallback;
+            return this;
+        }
+
+        public Builder setNegativeTextColorResource(@ColorRes int textColorRes) {
+            this.btn_colorNegative = ResourcesCompat.getColor(context.getResources(), textColorRes, null);
+            return this;
+        }
+
+        public Builder setNegativeTextColor(int color) {
+            this.btn_colorNegative = color;
             return this;
         }
 
