@@ -36,7 +36,7 @@ And add the library to your module **build.gradle**:
 
 ```Javascript
 dependencies {
-    compile 'com.github.javiersantos:BottomDialogs:1.1'
+    compile 'com.github.javiersantos:BottomDialogs:1.2'
 }
 ```
 
@@ -75,7 +75,7 @@ new BottomDialog.Builder(this)
 ```
 
 ### Adding buttons and callbacks
-Buttons are showed at the end of the bottom dialog. You can add your own text and actions/callbacks.
+Buttons are showed at the end of the bottom dialog. You can add your own text, colors and actions/callbacks.
 
 ```Java
 new BottomDialog.Builder(this)
@@ -87,7 +87,12 @@ new BottomDialog.Builder(this)
 	        public void onClick(BottomDialog dialog) {
 	                Log.d("BottomDialogs", "Do something!");
 	        }
-	}).show();
+	})
+	.setPositiveBackgroundColorResource(R.color.colorPrimary)
+	//.setPositiveBackgroundColor(ContextCompat.getColor(this, R.color.colorPrimary)
+	.setPositiveTextColorResource(android.R.color.white)
+	//.setPositiveTextColor(ContextCompat.getColor(this, android.R.color.colorPrimary)
+	.show();
 ```
 
 ```Java
@@ -100,10 +105,15 @@ new BottomDialog.Builder(this)
 	        public void onClick(BottomDialog dialog) {
 	                Log.d("BottomDialogs", "Do something!");
 	        }
-	}).show();
+	})
+	.setNegativeTextColorResource(R.color.colorAccent)
+	//.setNegativeTextColor(ContextCompat.getColor(this, R.color.colorAccent)
+	.show();
 ```
 
 If no `onPositive()` or `onNegative()` callbacks are provided, then the bottom dialog will be dismissed when tapping de button.
+
+If `autoDismiss()` is turned `false`, then you must manually dismiss the dialog in these callbacks. Auto dismiss is `true` by default.
 
 ### Dismissing when touching outside
 The `setCancelable()` method lets you disable dismissing the bottom dialog when you tap outside the dialog window.
