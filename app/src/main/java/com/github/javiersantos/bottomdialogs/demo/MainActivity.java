@@ -40,18 +40,7 @@ public class MainActivity extends AppCompatActivity {
                 .setContent("Glad to see you like BottomDialogs! If you're up for it, we would really appreciate you reviewing us.")
                 .setPositiveText("Google Play")
                 .setNegativeText("Close")
-                .onPositive(new BottomDialog.ButtonCallback() {
-                    @Override
-                    public void onClick(@NonNull BottomDialog dialog) {
-
-                    }
-                })
-                .onNegative(new BottomDialog.ButtonCallback() {
-                    @Override
-                    public void onClick(@NonNull BottomDialog dialog) {
-
-                    }
-                }).show();
+                .show();
     }
 
     public void sampleCustomView(View view) {
@@ -64,18 +53,7 @@ public class MainActivity extends AppCompatActivity {
                 .setCustomView(customView)
                 .setPositiveText("Google Play")
                 .setNegativeText("Close")
-                .onPositive(new BottomDialog.ButtonCallback() {
-                    @Override
-                    public void onClick(@NonNull BottomDialog dialog) {
-
-                    }
-                })
-                .onNegative(new BottomDialog.ButtonCallback() {
-                    @Override
-                    public void onClick(@NonNull BottomDialog dialog) {
-
-                    }
-                }).show();
+                .show();
     }
 
     public void toGithub(View view) {
