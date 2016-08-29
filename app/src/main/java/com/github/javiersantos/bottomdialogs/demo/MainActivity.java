@@ -1,5 +1,6 @@
 package com.github.javiersantos.bottomdialogs.demo;
 
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.net.Uri;
@@ -9,6 +10,7 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -30,13 +32,36 @@ public class MainActivity extends AppCompatActivity {
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setImageDrawable(new IconicsDrawable(this).icon(MaterialDesignIconic.Icon.gmi_github).color(Color.WHITE).sizeDp(24));
 
-
     }
 
-    public void sample1(View view) {
+    public void sample(View view) {
         new BottomDialog.Builder(this)
                 .setTitle("Awesome!")
                 .setContent("Glad to see you like BottomDialogs! If you're up for it, we would really appreciate you reviewing us.")
+                .setPositiveText("Google Play")
+                .setNegativeText("Close")
+                .onPositive(new BottomDialog.ButtonCallback() {
+                    @Override
+                    public void onClick(@NonNull BottomDialog dialog) {
+
+                    }
+                })
+                .onNegative(new BottomDialog.ButtonCallback() {
+                    @Override
+                    public void onClick(@NonNull BottomDialog dialog) {
+
+                    }
+                }).show();
+    }
+
+    public void sampleCustomView(View view) {
+        LayoutInflater inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        View customView = inflater.inflate(R.layout.bottomdialog_layout, null);
+
+        new BottomDialog.Builder(this)
+                .setTitle("Awesome!")
+                .setContent("Glad to see you like BottomDialogs! If you're up for it, we would really appreciate you reviewing us.")
+                .setCustomView(customView)
                 .setPositiveText("Google Play")
                 .setNegativeText("Close")
                 .onPositive(new BottomDialog.ButtonCallback() {
