@@ -20,7 +20,6 @@
     <style name="Button.Flat" parent="Button.Flat.Base" />
 
     <style name="Button.Base" parent="Base.TextAppearance.AppCompat.Button">
-        <item name="android:background">@drawable/btn_default</item>
         <item name="android:textColor">@android:color/white</item>
         <item name="android:textSize">13sp</item>
         <item name="android:minHeight">@dimen/btn_min_height</item>
@@ -38,7 +37,7 @@
         <item name="android:background">@drawable/btn_flat_selector</item>
         <item name="android:minWidth">@dimen/btn_min_width</item>
         <item name="android:minHeight">@dimen/btn_min_height</item>
-        <item name="android:textColor">@color/colorAccent</item>
+        <item name="android:textColor">?attr/colorAccent</item>
         <item name="android:textStyle">bold</item>
         <item name="android:paddingLeft">@dimen/btn_flat_padding</item>
         <item name="android:paddingRight">@dimen/btn_flat_padding</item>
