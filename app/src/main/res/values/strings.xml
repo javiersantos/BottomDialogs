@@ -3,5 +3,6 @@
     <string name="app_description">A library that shows a customizable Material-based bottom sheet.</string>
     <string name="action_about">About</string>
 
-    <string name="sample_1">Show bottom dialog</string>
+    <string name="sample">Show bottom dialog</string>
+    <string name="sample_customview">Show bottom dialog with custom view</string>
 </resources>
