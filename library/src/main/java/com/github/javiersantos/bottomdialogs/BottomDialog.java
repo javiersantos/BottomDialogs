@@ -15,6 +15,7 @@ import android.support.v4.content.res.ResourcesCompat;
 import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
@@ -71,6 +72,8 @@ public class BottomDialog {
         }
 
         if (builder.customView != null) {
+            if (builder.customView.getParent() != null)
+                ((ViewGroup) builder.customView.getParent()).removeAllViews();
             vCustomView.addView(builder.customView);
             vCustomView.setPadding(builder.customViewPaddingLeft, builder.customViewPaddingTop, builder.customViewPaddingRight, builder.customViewPaddingBottom);
         }
