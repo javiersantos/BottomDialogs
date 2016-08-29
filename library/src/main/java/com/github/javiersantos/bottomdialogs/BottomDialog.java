@@ -79,7 +79,8 @@ public class BottomDialog {
                 public void onClick(View view) {
                     if (builder.btn_positive_callback != null)
                         builder.btn_positive_callback.onClick(BottomDialog.this);
-                    bottomDialog.dismiss();
+                    if (builder.isAutoDismiss)
+                        bottomDialog.dismiss();
                 }
             });
         }
@@ -92,7 +93,8 @@ public class BottomDialog {
                 public void onClick(View view) {
                     if (builder.btn_negative_callback != null)
                         builder.btn_negative_callback.onClick(BottomDialog.this);
-                    bottomDialog.dismiss();
+                    if (builder.isAutoDismiss)
+                        bottomDialog.dismiss();
                 }
             });
         }
@@ -119,6 +121,7 @@ public class BottomDialog {
         // Buttons
         protected CharSequence btn_negative, btn_positive;
         protected ButtonCallback btn_negative_callback, btn_positive_callback;
+        protected boolean isAutoDismiss;
 
         // Custom View
         protected View customView;
@@ -131,6 +134,7 @@ public class BottomDialog {
             this.activity = (Activity) context;
             this.context = context;
             this.isCancelable = true;
+            this.isAutoDismiss = true;
         }
 
         public Builder setTitle(@StringRes int titleRes) {
@@ -195,6 +199,11 @@ public class BottomDialog {
 
         public Builder setCancelable(boolean cancelable) {
             this.isCancelable = cancelable;
+            return this;
+        }
+
+        public Builder autoDismiss(boolean autodismiss) {
+            this.isAutoDismiss = autodismiss;
             return this;
         }
 
