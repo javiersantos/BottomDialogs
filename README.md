@@ -26,9 +26,9 @@ Add the repository to your project **build.gradle**:
 
 ```Javascript
 repositories {
-    maven {
-        url "https://jitpack.io"
-    }
+	maven {
+		url "https://jitpack.io"
+	}
 }
 ```
 
@@ -36,7 +36,7 @@ And add the library to your module **build.gradle**:
 
 ```Javascript
 dependencies {
-    compile 'com.github.javiersantos:BottomDialogs:1.2'
+	compile 'com.github.javiersantos:BottomDialogs:1.2'
 }
 ```
 
@@ -46,18 +46,18 @@ A basic bottom dialog will be shown. You have access to methods such as `setTitl
 
 ```Java
 new BottomDialog.Builder(this)
-        .setTitle("Awesome!")
-        .setContent("What can we improve? Your feedback is always welcome.")
-        .show();
+	.setTitle("Awesome!")
+	.setContent("What can we improve? Your feedback is always welcome.")
+	.show();
 ```
 
 or
 
 ```Java
 BottomDialog bottomDialog = new BottomDialog.Builder(this)
-        .setTitle("Awesome!")
-        .setContent("What can we improve? Your feedback is always welcome.")
-        .build();
+	.setTitle("Awesome!")
+	.setContent("What can we improve? Your feedback is always welcome.")
+	.build();
 ...
 bottomDialog.show();
 ```
@@ -67,11 +67,11 @@ The bottom dialog icon will be shown to the left of the title.
 
 ```Java
 new BottomDialog.Builder(this)
-        .setTitle("Awesome!")
-        .setContent("What can we improve? Your feedback is always welcome.")
-        .setIcon(R.drawable.ic_launcher)
-        //.setIcon(ContextCompat.getDrawable(this, R.drawable.ic_launcher))
-        .show();
+	.setTitle("Awesome!")
+	.setContent("What can we improve? Your feedback is always welcome.")
+	.setIcon(R.drawable.ic_launcher)
+	//.setIcon(ContextCompat.getDrawable(this, R.drawable.ic_launcher))
+	.show();
 ```
 
 ### Adding buttons and callbacks
@@ -79,36 +79,34 @@ Buttons are showed at the end of the bottom dialog. You can add your own text, c
 
 ```Java
 new BottomDialog.Builder(this)
-        .setTitle("Awesome!")
-        .setContent("What can we improve? Your feedback is always welcome.")
-        .setPositiveText("OK")
-        .onPositive(new BottomDialog.ButtonCallback() {
-	        @Override
-	        public void onClick(BottomDialog dialog) {
-	                Log.d("BottomDialogs", "Do something!");
-	        }
-	})
+	.setTitle("Awesome!")
+	.setContent("What can we improve? Your feedback is always welcome.")
+	.setPositiveText("OK")
 	.setPositiveBackgroundColorResource(R.color.colorPrimary)
 	//.setPositiveBackgroundColor(ContextCompat.getColor(this, R.color.colorPrimary)
 	.setPositiveTextColorResource(android.R.color.white)
 	//.setPositiveTextColor(ContextCompat.getColor(this, android.R.color.colorPrimary)
-	.show();
+	.onPositive(new BottomDialog.ButtonCallback() {
+		@Override
+		public void onClick(BottomDialog dialog) {
+			Log.d("BottomDialogs", "Do something!");
+		}
+	}).show();
 ```
 
 ```Java
 new BottomDialog.Builder(this)
-        .setTitle("Awesome!")
-        .setContent("What can we improve? Your feedback is always welcome.")
-        .setNegativeText("Exit")
-        .onNegative(new BottomDialog.ButtonCallback() {
-	        @Override
-	        public void onClick(BottomDialog dialog) {
-	                Log.d("BottomDialogs", "Do something!");
-	        }
-	})
+	.setTitle("Awesome!")
+	.setContent("What can we improve? Your feedback is always welcome.")
+	.setNegativeText("Exit")
 	.setNegativeTextColorResource(R.color.colorAccent)
 	//.setNegativeTextColor(ContextCompat.getColor(this, R.color.colorAccent)
-	.show();
+	.onNegative(new BottomDialog.ButtonCallback() {
+		@Override
+		public void onClick(BottomDialog dialog) {
+			Log.d("BottomDialogs", "Do something!");
+		}
+	}).show();
 ```
 
 If no `onPositive()` or `onNegative()` callbacks are provided, then the bottom dialog will be dismissed when tapping de button.
@@ -120,10 +118,10 @@ The `setCancelable()` method lets you disable dismissing the bottom dialog when 
 
 ```Java
 new BottomDialog.Builder(this)
-        .setTitle("Awesome!")
-        .setContent("What can we improve? Your feedback is always welcome.")
-        .setCancelable(false)
-        .show();
+	.setTitle("Awesome!")
+	.setContent("What can we improve? Your feedback is always welcome.")
+	.setCancelable(false)
+	.show();
 ```
 
 ### Adding a custom view
@@ -131,10 +129,10 @@ You can add custom view to your bottom dialog just by adding the layout to the `
 
 ```Java
 new BottomDialog.Builder(this)
-        .setTitle("Awesome!")
-        .setContent("What can we improve? Your feedback is always welcome.")
-        .setCustomView(R.layout.my_custom_view)
-        .show();
+	.setTitle("Awesome!")
+	.setContent("What can we improve? Your feedback is always welcome.")
+	.setCustomView(R.layout.my_custom_view)
+	.show();
 ```
 
 A detailed description is available at: https://github.com/javiersantos/BottomDialogs/wiki/Adding-a-custom-view
