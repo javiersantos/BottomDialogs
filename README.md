@@ -36,7 +36,7 @@ And add the library to your module **build.gradle**:
 
 ```Javascript
 dependencies {
-	compile 'com.github.javiersantos:BottomDialogs:1.2'
+	compile 'com.github.javiersantos:BottomDialogs:1.2.1'
 }
 ```
 
