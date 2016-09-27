@@ -1,6 +1,5 @@
 package com.github.javiersantos.bottomdialogs;
 
-import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
 import android.graphics.drawable.Drawable;
@@ -14,6 +13,7 @@ import android.support.v4.content.ContextCompat;
 import android.support.v4.content.res.ResourcesCompat;
 import android.util.TypedValue;
 import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -49,7 +49,7 @@ public class BottomDialog {
     @UiThread
     private Dialog initBottomDialog(final Builder builder) {
         final Dialog bottomDialog = new Dialog(builder.context, R.style.BottomDialogs);
-        View view = builder.activity.getLayoutInflater().inflate(R.layout.library_bottom_dialog, null);
+        View view = LayoutInflater.from(builder.context).inflate(R.layout.library_bottom_dialog, null);
 
         ImageView vIcon = (ImageView) view.findViewById(R.id.bottomDialog_icon);
         TextView vTitle = (TextView) view.findViewById(R.id.bottomDialog_title);
@@ -101,7 +101,7 @@ public class BottomDialog {
                 builder.btn_colorPositiveBackground = !hasColorPrimary ? v.data : ContextCompat.getColor(builder.context, R.color.colorPrimary);
             }
 
-            Drawable buttonBackground = UtilsLibrary.createButtonBackgroundDrawable(builder.activity, builder.btn_colorPositiveBackground);
+            Drawable buttonBackground = UtilsLibrary.createButtonBackgroundDrawable(builder.context, builder.btn_colorPositiveBackground);
 
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
                 vPositive.setBackground(buttonBackground);
@@ -138,7 +138,6 @@ public class BottomDialog {
     }
 
     public static class Builder {
-        protected Activity activity;
         protected Context context;
 
         // Bottom Dialog
@@ -167,7 +166,6 @@ public class BottomDialog {
         protected boolean isCancelable;
 
         public Builder(@NonNull Context context) {
-            this.activity = (Activity) context;
             this.context = context;
             this.isCancelable = true;
             this.isAutoDismiss = true;
