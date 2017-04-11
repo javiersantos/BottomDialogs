@@ -36,6 +36,26 @@ public class BottomDialog {
         return mBuilder;
     }
 
+    public final ImageView getIconImageView() {
+        return vIcon;
+    }
+
+    public final TextView getTitleTextView() {
+        return vTitle;
+    }
+
+    public final TextView getContentTextView() {
+        return vContent;
+    }
+
+    public final Button getNegativeButton() {
+        return vNegative;
+    }
+
+    public final Button getPositiveButton() {
+        return vPositive;
+    }
+
     protected BottomDialog(Builder builder) {
         mBuilder = builder;
         mBuilder.bottomDialog = initBottomDialog(builder);
