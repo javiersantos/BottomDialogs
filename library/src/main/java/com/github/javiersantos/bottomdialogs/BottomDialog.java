@@ -23,7 +23,14 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 public class BottomDialog {
+
     protected final Builder mBuilder;
+    protected ImageView vIcon ;
+    protected TextView vTitle ;
+    protected TextView vContent;
+    protected FrameLayout vCustomView;
+    protected Button vNegative ;
+    protected Button vPositive;
 
     public final Builder getBuilder() {
         return mBuilder;
@@ -51,12 +58,12 @@ public class BottomDialog {
         final Dialog bottomDialog = new Dialog(builder.context, R.style.BottomDialogs);
         View view = LayoutInflater.from(builder.context).inflate(R.layout.library_bottom_dialog, null);
 
-        ImageView vIcon = (ImageView) view.findViewById(R.id.bottomDialog_icon);
-        TextView vTitle = (TextView) view.findViewById(R.id.bottomDialog_title);
-        TextView vContent = (TextView) view.findViewById(R.id.bottomDialog_content);
-        FrameLayout vCustomView = (FrameLayout) view.findViewById(R.id.bottomDialog_custom_view);
-        Button vNegative = (Button) view.findViewById(R.id.bottomDialog_cancel);
-        Button vPositive = (Button) view.findViewById(R.id.bottomDialog_ok);
+        vIcon = (ImageView) view.findViewById(R.id.bottomDialog_icon);
+        vTitle = (TextView) view.findViewById(R.id.bottomDialog_title);
+        vContent = (TextView) view.findViewById(R.id.bottomDialog_content);
+        vCustomView = (FrameLayout) view.findViewById(R.id.bottomDialog_custom_view);
+        vNegative = (Button) view.findViewById(R.id.bottomDialog_cancel);
+        vPositive = (Button) view.findViewById(R.id.bottomDialog_ok);
 
         if (builder.icon != null) {
             vIcon.setVisibility(View.VISIBLE);
