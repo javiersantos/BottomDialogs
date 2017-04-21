@@ -139,9 +139,9 @@ A detailed description is available at: https://github.com/javiersantos/BottomDi
 
 ### Adding a custom color and font
 
-You can add custom colors and fonts to bottom dialod.
+You can add custom colors and fonts to bottom dialog.
 
-Now we are exposing all the view objects:
+Now we are exposing all the view objects and using this view objcets you can do your own customization:
 
 ```
 getIconImageView();
