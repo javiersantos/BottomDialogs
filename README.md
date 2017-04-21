@@ -137,9 +137,9 @@ new BottomDialog.Builder(this)
 
 A detailed description is available at: https://github.com/javiersantos/BottomDialogs/wiki/Adding-a-custom-view
 
-### Adding a custom fonts and colors for view objcets and hidding the unwanted components
+### Adding a custom color and font
 
-You can add custom colors and fonts to all the view objects.
+You can add custom colors and fonts to bottom dialod.
 
 Now we are exposing all the view objects:
 
