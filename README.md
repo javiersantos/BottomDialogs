@@ -137,6 +137,30 @@ new BottomDialog.Builder(this)
 
 A detailed description is available at: https://github.com/javiersantos/BottomDialogs/wiki/Adding-a-custom-view
 
+### Adding a custom fonts and colors for view objcets and hidding the unwanted components
+
+You can add custom colors and fonts to all the view objects.
+
+Now we are exposing all the view objects:
+
+```
+getIconImageView();
+getTitleTextView();
+getContentTextView(); 
+getNegativeButton();
+getPositiveButton();
+
+bottomDialog = new BottomDialog.Builder(this)
+...
+.build();
+
+Example:
+
+bottomDialog.getTitleTextView().setTextColor(Color.parseColor("#8f000000"));
+bottomDialog.getTitleTextView().setTypeface(BaseActivity.getFont(Fonts.SEMI_BOLD));
+
+```
+
 ## Apps already using this library
 
 - DU Certified by AOSP based custom ROM, Dirty Unicorns
