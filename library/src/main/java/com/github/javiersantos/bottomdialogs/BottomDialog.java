@@ -3,6 +3,7 @@ package com.github.javiersantos.bottomdialogs;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.support.annotation.ColorRes;
@@ -25,13 +26,13 @@ import android.widget.TextView;
 
 public class BottomDialog {
 
-    protected final Builder mBuilder;
-    protected ImageView vIcon ;
-    protected TextView vTitle ;
-    protected TextView vContent;
-    protected FrameLayout vCustomView;
-    protected Button vNegative ;
-    protected Button vPositive;
+    private final Builder mBuilder;
+    private ImageView vIcon ;
+    private TextView vTitle ;
+    private TextView vContent;
+    private FrameLayout vCustomView;
+    private Button vNegative ;
+    private Button vPositive;
 
     public final Builder getBuilder() {
         return mBuilder;
@@ -57,7 +58,7 @@ public class BottomDialog {
         return vPositive;
     }
 
-    protected BottomDialog(Builder builder) {
+    BottomDialog(Builder builder) {
         mBuilder = builder;
         mBuilder.bottomDialog = initBottomDialog(builder);
     }
@@ -84,12 +85,15 @@ public class BottomDialog {
         final Dialog bottomDialog = new Dialog(builder.context, R.style.BottomDialogs);
         View view = LayoutInflater.from(builder.context).inflate(R.layout.library_bottom_dialog, null);
 
-        vIcon = (ImageView) view.findViewById(R.id.bottomDialog_icon);
-        vTitle = (TextView) view.findViewById(R.id.bottomDialog_title);
-        vContent = (TextView) view.findViewById(R.id.bottomDialog_content);
-        vCustomView = (FrameLayout) view.findViewById(R.id.bottomDialog_custom_view);
-        vNegative = (Button) view.findViewById(R.id.bottomDialog_cancel);
-        vPositive = (Button) view.findViewById(R.id.bottomDialog_ok);
+        View container = view.findViewById(R.id.bottomDialog_container);
+        vIcon = view.findViewById(R.id.bottomDialog_icon);
+        vTitle = view.findViewById(R.id.bottomDialog_title);
+        vContent = view.findViewById(R.id.bottomDialog_content);
+        vCustomView = view.findViewById(R.id.bottomDialog_custom_view);
+        vNegative = view.findViewById(R.id.bottomDialog_cancel);
+        vPositive = view.findViewById(R.id.bottomDialog_ok);
+
+        container.setBackgroundColor(builder.backgroundColor);
 
         if (builder.icon != null) {
             vIcon.setVisibility(View.VISIBLE);
@@ -180,6 +184,9 @@ public class BottomDialog {
         protected Drawable icon;
         protected CharSequence title, content;
 
+        // Content style
+        protected int backgroundColor = Color.WHITE;
+
         // Buttons
         protected CharSequence btn_negative, btn_positive;
         protected ButtonCallback btn_negative_callback, btn_positive_callback;
@@ -231,6 +238,11 @@ public class BottomDialog {
 
         public Builder setIcon(@DrawableRes int iconRes) {
             this.icon = ResourcesCompat.getDrawable(context.getResources(), iconRes, null);
+            return this;
+        }
+
+        public Builder setBackgroundColor(int colorRes) {
+            this.backgroundColor = context.getResources().getColor(colorRes);
             return this;
         }
 
