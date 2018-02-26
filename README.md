@@ -139,26 +139,16 @@ A detailed description is available at: https://github.com/javiersantos/BottomDi
 
 ### Adding a custom color and font
 
-You can add custom colors and fonts to bottom dialog.
+You can add custom colors and fonts to bottom dialog by using the view objects: `getIconImageView()`, `getTitleTextView()`, `getContentTextView()`, `getNegativeButton()` and `getPositiveButton()`. For example:
 
-Now we are exposing all the view objects and using this view objcets you can do your own customization:
-
-```
-getIconImageView();
-getTitleTextView();
-getContentTextView(); 
-getNegativeButton();
-getPositiveButton();
-
-bottomDialog = new BottomDialog.Builder(this)
-...
-.build();
-
-Example:
+```Java
+BottomDialog bottomDialog = BottomDialog.Builder(this)
+	...
+	.build();
 
 bottomDialog.getTitleTextView().setTextColor(Color.parseColor("#8f000000"));
 bottomDialog.getTitleTextView().setTypeface(BaseActivity.getFont(Fonts.SEMI_BOLD));
-
+bottomDialog.show();
 ```
 
 ## Apps already using this library
