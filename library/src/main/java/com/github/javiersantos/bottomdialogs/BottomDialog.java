@@ -102,10 +102,14 @@ public class BottomDialog {
 
         if (builder.title != null) {
             vTitle.setText(builder.title);
+        } else {
+            vTitle.setVisibility(View.GONE);
         }
 
         if (builder.content != null) {
             vContent.setText(builder.content);
+        } else {
+            vContent.setVisibility(View.GONE);
         }
 
         if (builder.customView != null) {
