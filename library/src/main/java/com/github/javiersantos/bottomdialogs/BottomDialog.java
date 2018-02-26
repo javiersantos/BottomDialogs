@@ -2,6 +2,7 @@ package com.github.javiersantos.bottomdialogs;
 
 import android.app.Dialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.support.annotation.ColorRes;
@@ -71,6 +72,11 @@ public class BottomDialog {
     public void dismiss() {
         if (mBuilder != null && mBuilder.bottomDialog != null)
             mBuilder.bottomDialog.dismiss();
+    }
+
+    public void setOnDismissListener(DialogInterface.OnDismissListener onDismissListener) {
+        if (mBuilder != null && mBuilder.bottomDialog != null)
+            mBuilder.bottomDialog.setOnDismissListener(onDismissListener);
     }
 
     @UiThread
