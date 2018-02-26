@@ -5,7 +5,7 @@
     android:orientation="vertical">
 
     <View
-        android:id="@+id/shadow"
+        android:id="@+id/bottomDialog_shadow"
         android:layout_width="match_parent"
         android:layout_height="3dp"
         android:background="@drawable/shadow" />

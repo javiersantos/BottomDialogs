@@ -25,6 +25,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 public class BottomDialog {
+    private static final int DEFAULT_SHADOW_HEIGHT = 3;
 
     private final Builder mBuilder;
     private ImageView vIcon ;
@@ -34,29 +35,31 @@ public class BottomDialog {
     private Button vNegative ;
     private Button vPositive;
 
-    public final Builder getBuilder() {
+    public Builder getBuilder() {
         return mBuilder;
     }
 
-    public final ImageView getIconImageView() {
+    public ImageView getIconImageView() {
         return vIcon;
     }
 
-    public final TextView getTitleTextView() {
+    public TextView getTitleTextView() {
         return vTitle;
     }
 
-    public final TextView getContentTextView() {
+    public TextView getContentTextView() {
         return vContent;
     }
 
-    public final Button getNegativeButton() {
+    public Button getNegativeButton() {
         return vNegative;
     }
 
-    public final Button getPositiveButton() {
+    public Button getPositiveButton() {
         return vPositive;
     }
+
+    public View getCustomView() { return vCustomView; }
 
     BottomDialog(Builder builder) {
         mBuilder = builder;
@@ -86,6 +89,8 @@ public class BottomDialog {
         View view = LayoutInflater.from(builder.context).inflate(R.layout.library_bottom_dialog, null);
 
         View container = view.findViewById(R.id.bottomDialog_container);
+        View shadow = view.findViewById(R.id.bottomDialog_shadow);
+
         vIcon = view.findViewById(R.id.bottomDialog_icon);
         vTitle = view.findViewById(R.id.bottomDialog_title);
         vContent = view.findViewById(R.id.bottomDialog_content);
@@ -93,7 +98,15 @@ public class BottomDialog {
         vNegative = view.findViewById(R.id.bottomDialog_cancel);
         vPositive = view.findViewById(R.id.bottomDialog_ok);
 
+        // Apply style changes
         container.setBackgroundColor(builder.backgroundColor);
+        if (builder.shadowHeight != DEFAULT_SHADOW_HEIGHT) {
+            LinearLayout.LayoutParams params = (LinearLayout.LayoutParams)
+                    shadow.getLayoutParams();
+            params.height = UtilsLibrary.dpToPixels(builder.context,
+                    builder.shadowHeight);
+            shadow.setLayoutParams(params);
+        }
 
         if (builder.icon != null) {
             vIcon.setVisibility(View.VISIBLE);
@@ -172,42 +185,46 @@ public class BottomDialog {
 
         bottomDialog.setContentView(view);
         bottomDialog.setCancelable(builder.isCancelable);
-        bottomDialog.getWindow().setLayout(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
-        bottomDialog.getWindow().setGravity(Gravity.BOTTOM);
+
+        if (bottomDialog.getWindow() != null) {
+            bottomDialog.getWindow().setLayout(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+            bottomDialog.getWindow().setGravity(Gravity.BOTTOM);
+        }
 
         return bottomDialog;
     }
 
     public static class Builder {
-        protected Context context;
+        Context context;
 
         // Bottom Dialog
-        protected Dialog bottomDialog;
+        Dialog bottomDialog;
 
         // Icon, Title and Content
-        protected Drawable icon;
-        protected CharSequence title, content;
+        Drawable icon;
+        CharSequence title, content;
 
         // Content style
-        protected int backgroundColor = Color.WHITE;
+        int backgroundColor = Color.WHITE;
+        int shadowHeight = DEFAULT_SHADOW_HEIGHT;
 
         // Buttons
-        protected CharSequence btn_negative, btn_positive;
-        protected ButtonCallback btn_negative_callback, btn_positive_callback;
-        protected boolean isAutoDismiss;
+        CharSequence btn_negative, btn_positive;
+        ButtonCallback btn_negative_callback, btn_positive_callback;
+        boolean isAutoDismiss;
 
         // Button text colors
-        protected int btn_colorNegative, btn_colorPositive;
+        int btn_colorNegative, btn_colorPositive;
 
         // Button background colors
-        protected int btn_colorPositiveBackground;
+        int btn_colorPositiveBackground;
 
         // Custom View
-        protected View customView;
-        protected int customViewPaddingLeft, customViewPaddingTop, customViewPaddingRight, customViewPaddingBottom;
+        View customView;
+        int customViewPaddingLeft, customViewPaddingTop, customViewPaddingRight, customViewPaddingBottom;
 
         // Other options
-        protected boolean isCancelable;
+        boolean isCancelable;
 
         public Builder(@NonNull Context context) {
             this.context = context;
@@ -247,6 +264,11 @@ public class BottomDialog {
 
         public Builder setBackgroundColor(int colorRes) {
             this.backgroundColor = context.getResources().getColor(colorRes);
+            return this;
+        }
+
+        public Builder setShadowHeight(int heightDp) {
+            this.shadowHeight = heightDp;
             return this;
         }
 
@@ -353,8 +375,6 @@ public class BottomDialog {
     }
 
     public interface ButtonCallback {
-
         void onClick(@NonNull BottomDialog dialog);
     }
-
 }
