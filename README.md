@@ -144,6 +144,12 @@ https://github.com/DirtyUnicorns/android_packages_apps_DU-Certified
 
 Feel free to send me new projects by submitting an [issue](https://github.com/javiersantos/BottomDialogs/issues) or a [pull request](https://github.com/javiersantos/BottomDialogs/pulls).
 
+## Third Party Bindings
+
+### React Native
+You may now use this library with [React Native](https://github.com/facebook/react-native) via the module [here](https://github.com/prscX/react-native-bottom-action-sheet)
+
+
 ## License
 	Copyright 2016 Javier Santos
 
