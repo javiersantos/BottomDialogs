@@ -151,13 +151,6 @@ bottomDialog.getTitleTextView().setTypeface(BaseActivity.getFont(Fonts.SEMI_BOLD
 bottomDialog.show();
 ```
 
-## Apps already using this library
-
-- DU Certified by AOSP based custom ROM, Dirty Unicorns
-https://github.com/DirtyUnicorns/android_packages_apps_DU-Certified
-
-Feel free to send me new projects by submitting an [issue](https://github.com/javiersantos/BottomDialogs/issues) or a [pull request](https://github.com/javiersantos/BottomDialogs/pulls).
-
 ## Third Party Bindings
 
 ### React Native
@@ -165,7 +158,7 @@ You may now use this library with [React Native](https://github.com/facebook/rea
 
 
 ## License
-	Copyright 2016 Javier Santos
+	Copyright 2016-2018 Javier Santos
 
 	Licensed under the Apache License, Version 2.0 (the "License");
 	you may not use this file except in compliance with the License.
